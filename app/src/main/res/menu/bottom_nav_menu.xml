@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/home"
+            android:title="Home"
+            android:icon="@drawable/ic_baseline_home_24"/>
+        <item
+            android:id="@+id/masjid"
+            android:title="Masjid"
+            android:icon="@drawable/ic_masjid"/>
+        <item
+            android:id="@+id/pengajian"
+            android:title="Pengajian"
+            android:icon="@drawable/ic_alquran"/>
+        <item
+            android:id="@+id/prayer"
+            android:title="Waktu Sholat"
+            android:icon="@drawable/ic_prayer"/>
+        <item
+            android:id="@+id/user"
+            android:title="Profile"
+            android:icon="@drawable/ic_baseline_person_24"/>
+</menu>
