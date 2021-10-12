@@ -17,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MengNgaji">
         <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".DetailProfilActivity"
+            android:exported="true" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true" />
         <activity
