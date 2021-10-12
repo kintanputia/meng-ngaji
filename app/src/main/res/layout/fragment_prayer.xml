@@ -25,7 +25,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="90dp"
                     android:alpha="0.4"
-                    android:src="@drawable/masjid" />
+                    android:src="@drawable/masjid1" />
 
                 <ImageView
                     android:layout_width="25dp"
