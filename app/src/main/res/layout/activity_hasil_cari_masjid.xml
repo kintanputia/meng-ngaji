@@ -18,7 +18,7 @@
     <EditText
         android:id="@+id/textView3"
         android:layout_width="350dp"
-        android:layout_height="34dp"
+        android:layout_height="48dp"
         android:background="@drawable/search_rounded"
         android:hint="Nama Masjid"
         android:padding="5dp"
