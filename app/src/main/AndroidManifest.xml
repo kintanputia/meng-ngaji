@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MengNgaji">
         <activity
+            android:name=".DetailPengajianMasjidActivity"
+            android:exported="true" />
+        <activity
             android:name=".HasilCariMasjidActivity"
             android:exported="true" />
         <!--

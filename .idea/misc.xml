@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19583333333333333" />
         <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.19583333333333333" />
+        <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/drawable/ic_launcher_background.xml" value="0.19583333333333333" />
+        <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/drawable/ic_masjid.xml" value="0.19583333333333333" />
         <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/drawable/search_rounded.xml" value="0.19583333333333333" />
         <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/drawable/selector.xml" value="0.19583333333333333" />
+        <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/layout/activity_detail_pengajian_masjid.xml" value="0.16666666666666666" />
         <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/layout/activity_hasil_cari_masjid.xml" value="0.22" />
         <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/layout/fragment_cari_ngaji.xml" value="0.1796875" />
@@ -18,6 +22,8 @@
         <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/layout/fragment_profile.xml" value="0.1796875" />
         <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1796875" />
         <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/menu/botton_nav_menu.xml" value="0.1796875" />
+        <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/College/Pemograman Teknologi Bergerak/MengNgaji/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
   </component>

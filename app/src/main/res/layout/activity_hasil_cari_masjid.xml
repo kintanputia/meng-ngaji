@@ -36,7 +36,7 @@
         app:layout_constraintEnd_toStartOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="@+id/toolbar3"
         app:layout_constraintTop_toTopOf="@+id/toolbar3"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
+        app:srcCompat="@drawable/ic_back" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
