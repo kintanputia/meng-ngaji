@@ -32,7 +32,7 @@
             android:name=".DetailPengajianMasjidActivity"
             android:exported="true" />
         <activity
-            android:name=".HasilCariMasjidActivity"
+            android:name=".HasilCariPengajianActivity"
             android:exported="true" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

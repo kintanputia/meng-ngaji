@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HasilCariMasjidActivity">
+    tools:context=".HasilCariPengajianActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar3"
@@ -18,7 +18,7 @@
     <EditText
         android:id="@+id/textView3"
         android:layout_width="350dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:background="@drawable/search_rounded"
         android:hint="Nama Masjid"
         android:padding="5dp"
@@ -39,6 +39,7 @@
         app:srcCompat="@drawable/ic_back" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="673dp"
         app:layout_constraintEnd_toEndOf="parent"
