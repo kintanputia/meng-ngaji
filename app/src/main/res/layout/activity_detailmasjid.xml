@@ -22,7 +22,6 @@
         android:layout_height="38dp"
         android:background="@drawable/ic_baseline_arrow_back_ios_new_24"
         android:backgroundTint="@color/hijau_tua"
-        android:onClick="Lokasipengguna"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
