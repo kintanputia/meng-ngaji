@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MengNgaji">
         <activity
+            android:name=".HasilCariPengajianTerdekatActivity"
+            android:exported="true" />
+        <activity
             android:name=".ChangePasswordActivity"
             android:exported="true" />
         <activity

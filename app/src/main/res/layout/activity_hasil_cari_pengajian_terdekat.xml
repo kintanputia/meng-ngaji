@@ -17,17 +17,17 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="350dp"
-        android:layout_height="40dp"
-        android:background="@drawable/search_rounded"
-        android:text="Nama Masjid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Masjid Terdekat"
+        android:textColor="@color/white"
         android:textSize="20dp"
-        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
+        app:layout_constraintHorizontal_bias="0.229"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar3" />
+        app:layout_constraintTop_toTopOf="@+id/toolbar3"
+        app:layout_constraintVertical_bias="0.444" />
 
     <ImageView
         android:id="@+id/imageView2"
