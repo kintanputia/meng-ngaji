@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HasilCariPengajianActivity">
+    tools:context=".LokasiMasjidActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar3"
@@ -39,11 +39,22 @@
         app:layout_constraintTop_toTopOf="@+id/toolbar3"
         app:srcCompat="@drawable/ic_back" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:padding="10dp"
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="409dp"
         android:layout_height="673dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

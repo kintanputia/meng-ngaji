@@ -31,19 +31,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/textView3"
-            app:layout_constraintEnd_toEndOf="@+id/textView3"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="@+id/textView3"
-            app:srcCompat="@drawable/ic_baseline_search_24" />
-
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_terdekat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/hijau_muda"
@@ -61,7 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button">
+            app:layout_constraintTop_toBottomOf="@+id/btn_terdekat">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview"
@@ -84,6 +73,16 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/search"
+            android:layout_width="39dp"
+            android:layout_height="33dp"
+            android:src="@drawable/ic_baseline_search_24"
+            android:background="@drawable/search_rounded"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="@+id/textView3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
