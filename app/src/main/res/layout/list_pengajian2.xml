@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@color/white">
 
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/lblJudul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -27,19 +28,19 @@
         app:srcCompat="@drawable/ic_outline_sticky_note_2_24" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/lblTanggal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:text="Tanggal"
         android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintStart_toEndOf="@+id/lblJudul"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.054" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/lblJam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -50,6 +51,6 @@
         android:text="Jam"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintStart_toEndOf="@+id/lblJudul"
+        app:layout_constraintTop_toBottomOf="@+id/lblTanggal" />
 </androidx.constraintlayout.widget.ConstraintLayout>

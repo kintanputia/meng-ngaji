@@ -40,6 +40,7 @@
         app:srcCompat="@drawable/ic_back" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mRecyclerView"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="673dp"
