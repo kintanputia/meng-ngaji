@@ -22,7 +22,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.buttonDaftar ->{
-                val intentAkun = Intent(this @RegisterActivity, LoginActivity::class.java)
+                val intentAkun = Intent(this, LoginActivity::class.java)
                 startActivity(intentAkun)
             }
         }
