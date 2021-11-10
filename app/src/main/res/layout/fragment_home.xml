@@ -114,7 +114,8 @@
                 android:textColor="@color/white"
                 android:textSize="38sp"
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="65dp"/>
+                android:layout_marginTop="65dp"
+                android:id="@+id/waktusolat"/>
 
             <TextView
                 android:layout_width="wrap_content"
