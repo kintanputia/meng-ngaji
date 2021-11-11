@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                 selectedFragment = HomeFragment()
             }
             R.id.masjid -> {
-                selectedFragment = LokasiPenggunaFragment()
+                selectedFragment = MasjidFragment()
             }
             R.id.pengajian -> {
                 selectedFragment = PengajianFragment()
