@@ -26,6 +26,7 @@
             app:layout_constraintVertical_bias="0.023" />
 
         <TextView
+            android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
@@ -110,25 +111,25 @@
                 android:textSize="28sp" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="125dp"
+                android:layout_marginTop="120dp"
+                android:fontFamily="sans-serif-black"
+                android:text="(-0:01:01)"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+            <TextView
                 android:id="@+id/waktusolat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="65dp"
+                android:layout_marginLeft="106dp"
+                android:layout_marginTop="70dp"
                 android:fontFamily="sans-serif-black"
                 android:text="12.09 am"
                 android:textColor="@color/white"
                 android:textSize="38sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="125dp"
-                android:layout_marginTop="128dp"
-                android:fontFamily="sans-serif-black"
-                android:text="(-0:01:01)"
-                android:textColor="@color/white"
-                android:textSize="26sp" />
 
         </androidx.cardview.widget.CardView>
 
@@ -142,7 +143,7 @@
             app:layout_constraintHorizontal_bias="0.551"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.88" />
+            app:layout_constraintVertical_bias="0.931" />
 
         <TextView
             android:id="@+id/textView8"
@@ -151,10 +152,10 @@
             android:text="Jadwal Pengajian :"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.101"
+            app:layout_constraintHorizontal_bias="0.102"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.662" />
+            app:layout_constraintVertical_bias="0.712" />
 
         <TextView
             android:id="@+id/textView9"
@@ -163,10 +164,10 @@
             android:text="Masjid Istiqlal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.58"
+            app:layout_constraintHorizontal_bias="0.694"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.699" />
+            app:layout_constraintVertical_bias="0.712" />
 
         <TextView
             android:id="@+id/textView10"
@@ -175,10 +176,10 @@
             android:text="Menjauhi godaan setan"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.815"
+            app:layout_constraintHorizontal_bias="0.818"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.757" />
+            app:layout_constraintVertical_bias="0.79" />
 
         <TextView
             android:id="@+id/textView12"
@@ -187,10 +188,10 @@
             android:text="2021/10/4-06.00"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.713"
+            app:layout_constraintHorizontal_bias="0.74"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.816" />
+            app:layout_constraintVertical_bias="0.849" />
 
         <TextView
             android:id="@+id/textView13"
@@ -199,10 +200,10 @@
             android:text="2,1 km"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.588"
+            app:layout_constraintHorizontal_bias="0.609"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.875" />
+            app:layout_constraintVertical_bias="0.901" />
 
         <ImageView
             android:id="@+id/imageView15"
@@ -211,10 +212,10 @@
             android:src="@drawable/masjid"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.126"
+            app:layout_constraintHorizontal_bias="0.105"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.832" />
+            app:layout_constraintVertical_bias="0.901" />
 
         <ImageView
             android:id="@+id/imageView16"
@@ -226,7 +227,7 @@
             app:layout_constraintHorizontal_bias="0.462"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.755" />
+            app:layout_constraintVertical_bias="0.789" />
 
         <ImageView
             android:id="@+id/imageView17"
@@ -238,7 +239,7 @@
             app:layout_constraintHorizontal_bias="0.462"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.814" />
+            app:layout_constraintVertical_bias="0.848" />
 
         <ImageView
             android:id="@+id/imageView18"
@@ -250,7 +251,7 @@
             app:layout_constraintHorizontal_bias="0.462"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.874" />
+            app:layout_constraintVertical_bias="0.908" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
