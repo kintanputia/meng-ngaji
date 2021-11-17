@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -48,6 +49,13 @@ class HomeFragment : Fragment() {
             transaction.replace(R.id.fl, prayerFragment)
             transaction.commit()
         }
+        val cardprayer = view.findViewById<CardView>(R.id.cardprayer)
+        cardprayer.setOnClickListener {
+            val prayerFragment = PrayerFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.fl, prayerFragment)
+            transaction.commit()
+        }
         val jadwal = view.findViewById<TextView>(R.id.jdwlpngajian)
         jadwal.setOnClickListener {
             val pengajianFragment = PengajianFragment()
@@ -69,6 +77,14 @@ class HomeFragment : Fragment() {
             transaction.replace(R.id.fl, pengajianFragment)
             transaction.commit()
         }
+        val cardjdwlpengajian = view.findViewById<ImageView>(R.id.cardjdwlpengajian)
+        cardjdwlpengajian.setOnClickListener {
+            val pengajianFragment = PengajianFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.fl, pengajianFragment)
+            transaction.commit()
+        }
+
         return view
     }
     companion object {
