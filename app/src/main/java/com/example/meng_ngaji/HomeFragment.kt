@@ -44,12 +44,10 @@ class HomeFragment : Fragment() {
         waktusolat.setOnClickListener {
             val prayerFragment = PrayerFragment()
             val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-            transaction.replace(R.id.layout,prayerFragment)
+            transaction.replace(R.id.fl,PrayerFragment)
             transaction.commit()
 
-        }
-
-
+    }
         return view
     }
 
@@ -72,4 +70,8 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+}
+
+private fun FragmentTransaction.replace(layout: Int, prayerFragment: PrayerFragment.Companion) {
+
 }
