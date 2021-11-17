@@ -88,7 +88,7 @@
             app:layout_constraintVertical_bias="0.499" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/cardprayer"
             android:layout_width="382dp"
             android:layout_height="205dp"
             app:cardBackgroundColor="#6094B0B2"
@@ -134,7 +134,7 @@
         </androidx.cardview.widget.CardView>
 
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/cardjdwlpengajian"
             android:layout_width="382dp"
             android:layout_height="205dp"
             android:src="@drawable/bgstyke_inforkartumasjid"
