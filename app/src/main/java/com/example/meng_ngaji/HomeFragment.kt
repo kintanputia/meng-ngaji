@@ -41,26 +41,36 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        val waktusolat = view.findViewById<TextView>(R.id.waktusolat)
-        waktusolat.setOnClickListener {
+        val waktsolat = view.findViewById<TextView>(R.id.waktusolat)
+        waktsolat.setOnClickListener {
             val prayerFragment = PrayerFragment()
             val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-            transaction.replace(R.id.fl,prayerFragment)
+            transaction.replace(R.id.fl, prayerFragment)
             transaction.commit()
-
-            val gmbrmsjd1 = view.findViewById<ImageView>(R.id.gmbrmsjd1)
-            waktusolat.setOnClickListener {
-                val pengajianFragment = PengajianFragment()
-                val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-                transaction.replace(R.id.fl,pengajianFragment)
-                transaction.commit()
-
-            }
-
-    }
+        }
+        val jadwal = view.findViewById<TextView>(R.id.jdwlpngajian)
+        jadwal.setOnClickListener {
+            val pengajianFragment = PengajianFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.fl, pengajianFragment)
+            transaction.commit()
+        }
+        val jadwalpengajian = view.findViewById<TextView>(R.id.jadwalpengajian)
+        jadwalpengajian.setOnClickListener {
+            val pengajianFragment = PengajianFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.fl, pengajianFragment)
+            transaction.commit()
+        }
+        val gmbrmsjd1 = view.findViewById<ImageView>(R.id.gmbrmsjd1)
+        gmbrmsjd1.setOnClickListener {
+            val pengajianFragment = PengajianFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.fl, pengajianFragment)
+            transaction.commit()
+        }
         return view
     }
-
     companion object {
         /**
          * Use this factory method to create a new instance of
