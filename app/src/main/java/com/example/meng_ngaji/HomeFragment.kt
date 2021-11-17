@@ -39,16 +39,15 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
         val waktusolat = view.findViewById<TextView>(R.id.waktusolat)
         waktusolat.setOnClickListener {
             val prayerFragment = PrayerFragment()
             val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-            transaction.replace(R.id.fl,prayerFragment)
+            transaction.replace(R.id.fl,PrayerFragment)
             transaction.commit()
 
-        }
-
-
+    }
         return view
     }
 
@@ -71,4 +70,8 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+}
+
+private fun FragmentTransaction.replace(layout: Int, prayerFragment: PrayerFragment.Companion) {
+
 }
