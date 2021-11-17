@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="Saturday, 25 September"
+            android:text="Sabtu, 25 September"
             android:textColor="#F2F2F2"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -206,7 +206,7 @@
             app:layout_constraintVertical_bias="0.918" />
 
         <ImageView
-            android:id="@+id/imageView15"
+            android:id="@+id/gmbrmsjd1"
             android:layout_width="143dp"
             android:layout_height="149dp"
             android:src="@drawable/masjid"
