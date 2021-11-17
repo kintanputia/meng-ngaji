@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
         waktusolat.setOnClickListener {
             val prayerFragment = PrayerFragment()
             val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-            transaction.replace(R.id.fl,PrayerFragment)
+            transaction.replace(R.id.fl,prayerFragment)
             transaction.commit()
 
     }
