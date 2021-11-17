@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -46,6 +47,15 @@ class HomeFragment : Fragment() {
             val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
             transaction.replace(R.id.fl,prayerFragment)
             transaction.commit()
+
+            val gmbrmsjd1 = view.findViewById<ImageView>(R.id.gmbrmsjd1)
+            waktusolat.setOnClickListener {
+                val pengajianFragment = PengajianFragment()
+                val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+                transaction.replace(R.id.fl,pengajianFragment)
+                transaction.commit()
+
+            }
 
     }
         return view
