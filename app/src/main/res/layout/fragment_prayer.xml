@@ -27,25 +27,40 @@
                     android:alpha="0.4"
                     android:src="@drawable/masjid1" />
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="9dp"
-                    android:layout_marginTop="11dp"
-                    android:layout_marginEnd="377dp"
-                    android:src="@drawable/ic_baseline_person_pin_circle_24" />
-
-                <TextView
+                <RelativeLayout
+                    android:id="@+id/rlSpin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="13dp"
-                    android:fontFamily="sans-serif"
-                    android:text="Padang"
-                    android:textColor="#F2F2F2"
-                    android:textSize="14sp" />
+                    android:layout_marginLeft="220dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center">
+
+                    <Spinner
+                        android:id="@+id/kota"
+                        android:layout_width="180dp"
+                        android:layout_height="50dp"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </RelativeLayout>
+
+<!--                <ImageView-->
+<!--                    android:layout_width="25dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_marginLeft="9dp"-->
+<!--                    android:layout_marginTop="11dp"-->
+<!--                    android:layout_marginEnd="377dp"-->
+<!--                    android:src="@drawable/ic_baseline_person_pin_circle_24" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="40dp"-->
+<!--                    android:layout_marginTop="13dp"-->
+<!--                    android:fontFamily="sans-serif"-->
+<!--                    android:text="Padang"-->
+<!--                    android:textColor="#F2F2F2"-->
+<!--                    android:textSize="14sp" />-->
 
             </RelativeLayout>
 
@@ -57,22 +72,23 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="115dp"
-                    android:layout_marginTop="68dp"
+                    android:layout_marginLeft="114dp"
+                    android:layout_marginTop="78dp"
                     android:fontFamily="sans-serif-black"
                     android:text="Waktu Sholat"
                     android:textColor="#F2F2F2"
-                    android:textSize="26sp" />
+                    android:textSize="30sp" />
 
                 <TextView
+                    android:id="@+id/tv_tanggal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="116dp"
+                    android:layout_marginTop="16dp"
                     android:fontFamily="sans-serif"
-                    android:text="Senin, 25 September 2021"
+                    android:text="Tanggal"
                     android:textColor="#F2F2F2"
-                    android:textSize="18sp" />
+                    android:textSize="22sp" />
 
             </LinearLayout>
 
@@ -101,12 +117,23 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/tv_subuh"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="160dp"
                         android:fontFamily="sans-serif"
                         android:paddingTop="22dp"
-                        android:text="04:48 AM"
+                        android:text="04:48"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="210dp"
+                        android:fontFamily="sans-serif"
+                        android:paddingTop="22dp"
+                        android:text="AM"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -133,12 +160,23 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/tv_dzuhur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="160dp"
                         android:fontFamily="sans-serif"
                         android:paddingTop="22dp"
-                        android:text="12.09 PM"
+                        android:text="12.09"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="210dp"
+                        android:fontFamily="sans-serif"
+                        android:paddingTop="22dp"
+                        android:text="PM"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -165,12 +203,23 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/tv_ashar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="160dp"
                         android:fontFamily="sans-serif"
                         android:paddingTop="22dp"
-                        android:text="03:12 PM"
+                        android:text="03:12"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="210dp"
+                        android:fontFamily="sans-serif"
+                        android:paddingTop="22dp"
+                        android:text="PM"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -197,12 +246,23 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/tv_maghrib"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="160dp"
                         android:fontFamily="sans-serif"
                         android:paddingTop="22dp"
-                        android:text="06:12 PM"
+                        android:text="06:12"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="210dp"
+                        android:fontFamily="sans-serif"
+                        android:paddingTop="22dp"
+                        android:text="PM"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -229,12 +289,23 @@
                         android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/tv_isya"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="160dp"
                         android:fontFamily="sans-serif"
                         android:paddingTop="23dp"
-                        android:text="07:21 PM"
+                        android:text="07:21"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="210dp"
+                        android:fontFamily="sans-serif"
+                        android:paddingTop="23dp"
+                        android:text="PM"
                         android:textColor="#000"
                         android:textSize="18sp" />
 

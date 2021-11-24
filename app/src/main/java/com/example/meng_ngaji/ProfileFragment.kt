@@ -25,6 +25,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private var param2: String? = null
 
     private lateinit var card1 : CardView
+
     private lateinit var card2 : CardView
     private lateinit var card3 : CardView
 

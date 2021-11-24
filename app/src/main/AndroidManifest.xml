@@ -24,13 +24,21 @@
             android:exported="true" />
         <activity
             android:name=".ChangePasswordActivity"
-            android:exported="true" />
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ChangePasswordActivity" />
+        </activity>
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity
             android:name=".DetailProfilActivity"
-            android:exported="true" />
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DetailProfilActivity" />
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true" />
