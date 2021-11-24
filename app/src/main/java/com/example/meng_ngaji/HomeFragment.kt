@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -40,19 +42,51 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        val waktusolat = view.findViewById<TextView>(R.id.waktusolat)
-        waktusolat.setOnClickListener {
+        val waktsolat = view.findViewById<TextView>(R.id.waktusolat)
+        waktsolat.setOnClickListener {
             val prayerFragment = PrayerFragment()
             val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-            transaction.replace(R.id.layout,prayerFragment)
+            transaction.replace(R.id.fl, prayerFragment)
             transaction.commit()
-
         }
-
+        val cardprayer = view.findViewById<CardView>(R.id.cardprayer)
+        cardprayer.setOnClickListener {
+            val prayerFragment = PrayerFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.fl, prayerFragment)
+            transaction.commit()
+        }
+        val jadwal = view.findViewById<TextView>(R.id.jdwlpngajian)
+        jadwal.setOnClickListener {
+            val pengajianFragment = PengajianFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.fl, pengajianFragment)
+            transaction.commit()
+        }
+        val jadwalpengajian = view.findViewById<TextView>(R.id.jadwalpengajian)
+        jadwalpengajian.setOnClickListener {
+            val pengajianFragment = PengajianFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.fl, pengajianFragment)
+            transaction.commit()
+        }
+        val gmbrmsjd1 = view.findViewById<ImageView>(R.id.gmbrmsjd1)
+        gmbrmsjd1.setOnClickListener {
+            val pengajianFragment = PengajianFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.fl, pengajianFragment)
+            transaction.commit()
+        }
+        val cardjdwlpengajian = view.findViewById<ImageView>(R.id.cardjdwlpengajian)
+        cardjdwlpengajian.setOnClickListener {
+            val pengajianFragment = PengajianFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.fl, pengajianFragment)
+            transaction.commit()
+        }
 
         return view
     }
-
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -72,4 +106,8 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+}
+
+private fun FragmentTransaction.replace(layout: Int, prayerFragment: PrayerFragment.Companion) {
+
 }
