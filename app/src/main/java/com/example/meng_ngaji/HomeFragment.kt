@@ -108,6 +108,6 @@ class HomeFragment : Fragment() {
     }
 }
 
-private fun FragmentTransaction.replace(layout: Int, prayerFragment: PrayerFragment.Companion) {
-
-}
+//private fun FragmentTransaction.replace(layout: Int, prayerFragment: PrayerFragment.Companion) {
+//
+//}

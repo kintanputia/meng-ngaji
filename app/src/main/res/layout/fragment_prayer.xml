@@ -120,20 +120,10 @@
                         android:id="@+id/tv_subuh"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="160dp"
+                        android:layout_marginLeft="175dp"
                         android:fontFamily="sans-serif"
                         android:paddingTop="22dp"
                         android:text="04:48"
-                        android:textColor="#000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="210dp"
-                        android:fontFamily="sans-serif"
-                        android:paddingTop="22dp"
-                        android:text="AM"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -163,20 +153,10 @@
                         android:id="@+id/tv_dzuhur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="160dp"
+                        android:layout_marginLeft="175dp"
                         android:fontFamily="sans-serif"
                         android:paddingTop="22dp"
                         android:text="12.09"
-                        android:textColor="#000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="210dp"
-                        android:fontFamily="sans-serif"
-                        android:paddingTop="22dp"
-                        android:text="PM"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -206,20 +186,10 @@
                         android:id="@+id/tv_ashar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="160dp"
+                        android:layout_marginLeft="175dp"
                         android:fontFamily="sans-serif"
                         android:paddingTop="22dp"
                         android:text="03:12"
-                        android:textColor="#000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="210dp"
-                        android:fontFamily="sans-serif"
-                        android:paddingTop="22dp"
-                        android:text="PM"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -249,20 +219,10 @@
                         android:id="@+id/tv_maghrib"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="160dp"
+                        android:layout_marginLeft="175dp"
                         android:fontFamily="sans-serif"
                         android:paddingTop="22dp"
                         android:text="06:12"
-                        android:textColor="#000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="210dp"
-                        android:fontFamily="sans-serif"
-                        android:paddingTop="22dp"
-                        android:text="PM"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -292,20 +252,10 @@
                         android:id="@+id/tv_isya"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="160dp"
+                        android:layout_marginLeft="175dp"
                         android:fontFamily="sans-serif"
                         android:paddingTop="23dp"
                         android:text="07:21"
-                        android:textColor="#000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="210dp"
-                        android:fontFamily="sans-serif"
-                        android:paddingTop="23dp"
-                        android:text="PM"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
