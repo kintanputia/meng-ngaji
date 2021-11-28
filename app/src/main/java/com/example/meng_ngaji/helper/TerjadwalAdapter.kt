@@ -1,10 +1,11 @@
-package com.example.meng_ngaji
+package com.example.meng_ngaji.helper
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.meng_ngaji.helper.Terjadwal
+import com.example.meng_ngaji.PengajianFragment
+import com.example.meng_ngaji.R
 import kotlinx.android.synthetic.main.list_masjid.view.lblJudul
 import kotlinx.android.synthetic.main.list_pengajian2.view.*
 

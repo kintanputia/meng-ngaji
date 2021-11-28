@@ -1,4 +1,4 @@
-package com.example.meng_ngaji
+package com.example.meng_ngaji.helper
 
 import android.os.AsyncTask
 import com.example.meng_ngaji.PrayerFragment

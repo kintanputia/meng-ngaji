@@ -1,11 +1,11 @@
-package com.example.meng_ngaji
+package com.example.meng_ngaji.helper
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.meng_ngaji.helper.Masjid
+import com.example.meng_ngaji.R
 import kotlinx.android.synthetic.main.list_masjid.view.*
 
 class PengajianAdapter(private val context: Context, private val arrayList: ArrayList<Masjid>) : RecyclerView.Adapter<PengajianAdapter.Holder>(){

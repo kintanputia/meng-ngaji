@@ -1,4 +1,4 @@
-package com.example.meng_ngaji
+package com.example.meng_ngaji.helper
 
 class Kota {
     var id: Int? = null

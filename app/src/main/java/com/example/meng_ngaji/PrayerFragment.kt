@@ -1,13 +1,14 @@
 package com.example.meng_ngaji
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Spinner
+import com.example.meng_ngaji.helper.ClientAsyncTask
+import com.example.meng_ngaji.helper.Kota
 import kotlinx.android.synthetic.main.fragment_prayer.*
 import org.json.JSONException
 import org.json.JSONObject
