@@ -17,7 +17,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 import android.widget.ArrayAdapter as ArrayAdapter
 
-
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 

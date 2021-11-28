@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
+import android.widget.TextView import kotlinx.android.synthetic.main.activity_detail_profil.*
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -17,6 +17,18 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
         bDaftar = findViewById(R.id.buttonDaftar)
         bDaftar.setOnClickListener(this)
+
+        // set toolbar as support action bar
+        setSupportActionBar(toolbar)
+
+        supportActionBar?.apply {
+            // show back button on toolbar
+            // on back button press, it will navigate to parent activity
+            title = " "
+
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
     }
 
     override fun onClick(v: View?) {
