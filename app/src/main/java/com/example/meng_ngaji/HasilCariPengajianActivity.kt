@@ -1,5 +1,6 @@
 package com.example.meng_ngaji
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import com.example.meng_ngaji.helper.PengajianAdapter
 import kotlinx.android.synthetic.main.activity_hasil_cari_pengajian.*
 
 class HasilCariPengajianActivity : AppCompatActivity() {
+    private lateinit var pengajianAdapter: PengajianAdapter
     val daftar = ArrayList<Masjid>()
     val listMasjid = arrayOf(
         "Muslimin",
@@ -30,6 +32,11 @@ class HasilCariPengajianActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hasil_cari_pengajian)
 
+        setRecyclerView()
+//        setListClickAction()
+    }
+
+    private fun setRecyclerView (){
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -46,7 +53,14 @@ class HasilCariPengajianActivity : AppCompatActivity() {
 
             if(listMasjid.size - 1 == i){
                 // init adapter yang telah dibuat tadi
-                val adapter = PengajianAdapter(this,daftar)
+//                val adapter = PengajianAdapter(this,daftar)
+                val adapter = PengajianAdapter(this, daftar, object : PengajianAdapter.OnItemClickCallback{
+                    override fun onItemClick(data: Masjid) {
+                        val intent = Intent(this@HasilCariPengajianActivity, DetailPengajianMasjidActivity::class.java)
+                        intent.putExtra(DetailPengajianMasjidActivity.EXTRA_NAME, data.namaMasjid)
+                        startActivity(intent)
+                    }
+                })
                 adapter.notifyDataSetChanged()
 
                 //tampilkan data dalam recycler view
@@ -55,4 +69,13 @@ class HasilCariPengajianActivity : AppCompatActivity() {
 
         }
     }
+//    private fun setListClickAction() {
+//        pengajianAdapter.setOnItemClickCallback(object : PengajianAdapter.OnItemClickCallback{
+//            override fun onItemClick(data: Masjid) {
+//                val intent = Intent(this@HasilCariPengajianActivity, DetailPengajianMasjidActivity::class.java)
+//                intent.putExtra(DetailPengajianMasjidActivity.EXTRA_NAME, data.namaMasjid)
+//                startActivity(intent)
+//            }
+//        })
+//    }
 }

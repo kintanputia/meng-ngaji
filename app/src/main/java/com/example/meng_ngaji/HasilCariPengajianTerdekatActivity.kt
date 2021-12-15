@@ -1,5 +1,6 @@
 package com.example.meng_ngaji
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,7 +47,14 @@ class HasilCariPengajianTerdekatActivity : AppCompatActivity() {
 
             if(listMasjid.size - 1 == i){
                 // init adapter yang telah dibuat tadi
-                val adapter = PengajianAdapter(this,daftar)
+//                val adapter = PengajianAdapter(this,daftar)
+                val adapter = PengajianAdapter(this, daftar, object : PengajianAdapter.OnItemClickCallback{
+                    override fun onItemClick(data: Masjid) {
+                        val intent = Intent(this@HasilCariPengajianTerdekatActivity, DetailPengajianMasjidActivity::class.java)
+                        intent.putExtra(DetailPengajianMasjidActivity.EXTRA_NAME, data.namaMasjid)
+                        startActivity(intent)
+                    }
+                })
                 adapter.notifyDataSetChanged()
 
                 //tampilkan data dalam recycler view
