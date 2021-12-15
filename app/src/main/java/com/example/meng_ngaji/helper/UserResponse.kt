@@ -13,6 +13,10 @@ class UserResponse {
         @Expose
         var email: String? = null
 
+        @SerializedName("password")
+        @Expose
+        var password: String? = null
+
         @SerializedName("nama")
         @Expose
         var nama: String? = null
@@ -21,7 +25,7 @@ class UserResponse {
         @Expose
         var no_hp: String? = null
 
-        @SerializedName("token")
+        @SerializedName("api_token")
         @Expose
         var token: String? = null
     }
