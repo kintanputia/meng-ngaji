@@ -17,11 +17,6 @@ class ClientAsyncTask(private val mContext: PrayerFragment, postExecuteListener:
         fun onPostExecute(result: String)
     }
 
-    /*init {
-        if (mPostExecuteListener == null)
-            throw Exception("Param cannot be null.")
-    }*/
-
     override fun onPostExecute(result: String) {
         super.onPostExecute(result)
         if (mPostExecuteListener != null) {

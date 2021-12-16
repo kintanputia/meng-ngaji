@@ -70,11 +70,10 @@
         app:layout_constraintVertical_bias="0.387" />
 
     <EditText
-        android:id="@+id/editTextNamaLengkap"
+        android:id="@+id/etNama"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:background="@color/white"
-        android:hint="Evan Dvorkin Baylen"
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -111,11 +110,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextEmailAddress"
+        android:id="@+id/etEmail"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:background="@color/white"
-        android:hint="evand@gmail.com"
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -153,11 +151,10 @@
         app:layout_constraintVertical_bias="0.617" />
 
     <EditText
-        android:id="@+id/editTextNoHp"
+        android:id="@+id/etNoHp"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:background="@color/white"
-        android:hint="+62 8126133748"
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"

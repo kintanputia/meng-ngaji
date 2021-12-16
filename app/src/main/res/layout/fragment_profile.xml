@@ -42,26 +42,26 @@
             app:layout_constraintVertical_bias="0.13" />
 
         <TextView
-            android:id="@+id/textViewNama"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvNama"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text="Evan Dvorkin Baylen"
+            android:layout_marginLeft="156dp"
             android:textColor="@color/black"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.739"
+            app:layout_constraintHorizontal_bias="0.55"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.132" />
 
         <TextView
-            android:id="@+id/textViewEmail"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvEmail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="evand@gmail.com"
+            android:layout_marginLeft="156dp"
             android:textColor="@color/black"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
