@@ -40,14 +40,6 @@ class SharedPref(activity: Activity) {
         return Gson().fromJson<User>(data, User::class.java)
     }
 
-    fun setString(key: String, value: String) {
-        sp.edit().putString(key, value).apply()
-    }
-
-    fun getString(key: String): String {
-        return sp.getString(key, "")!!
-    }
-
     fun clear(){
         sp.edit().clear().apply()
     }
