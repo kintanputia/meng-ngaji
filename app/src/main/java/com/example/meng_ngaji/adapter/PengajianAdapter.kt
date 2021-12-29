@@ -1,12 +1,12 @@
-package com.example.meng_ngaji.helper
+package com.example.meng_ngaji.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meng_ngaji.R
+import com.example.meng_ngaji.helper.Masjid
 import kotlinx.android.synthetic.main.list_masjid.view.*
-import retrofit2.Callback
 
 class PengajianAdapter(private val arrayList: ArrayList<Masjid>, private var onItemClickCallback: OnItemClickCallback) : RecyclerView.Adapter<PengajianAdapter.PostViewHolder>(){
 
@@ -14,14 +14,15 @@ class PengajianAdapter(private val arrayList: ArrayList<Masjid>, private var onI
     inner class PostViewHolder(itemView : View):RecyclerView.ViewHolder(itemView){
         fun bind(postResponse : Masjid) {
             with(itemView){
-                val text = "title : ${postResponse.namaMasjid}"
+                val text = "title : ${postResponse.nama_masjid}"
                 lblMasjid.text = text
             }
         }
     }
 
     fun setOnItemClickCallback(
-        onItemClickCallback: OnItemClickCallback) {
+        onItemClickCallback: OnItemClickCallback
+    ) {
         this.onItemClickCallback = onItemClickCallback
     }
 

@@ -1,97 +1,40 @@
 package com.example.meng_ngaji
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.meng_ngaji.helper.Masjid
-import com.example.meng_ngaji.helper.PengajianAdapter
+import com.example.meng_ngaji.adapter.PengajianTerdekatAdapter
+import com.example.meng_ngaji.helper.PostResponse
 import com.example.meng_ngaji.helper.RetrofitClient
 import kotlinx.android.synthetic.main.activity_hasil_cari_pengajian_terdekat.*
-import kotlinx.android.synthetic.main.list_masjid.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class HasilCariPengajianTerdekatActivity : AppCompatActivity() {
-    val daftar = ArrayList<Masjid>()
-    val listMasjid = arrayOf(
-        "Muslimin",
-        "Nurul Ikhlas"
-    )
-    val listJudul = arrayOf(
-        "Meraih Surga Allah",
-        "Mencintai Rasulullah"
-    )
-    val listWaktu = arrayOf(
-        "2021/11/10 - 09.00",
-        "2021/11/12 - 19.00"
-    )
-    val listJarak = arrayOf(
-        "0,5 km",
-        "1 km"
-    )
+    val list = ArrayList<PostResponse>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hasil_cari_pengajian_terdekat)
-        
+
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        RetrofitClient.instance.getPosts().enqueue(object : Callback<ArrayList<Masjid>>{
+        RetrofitClient.instance.getPosts().enqueue(object: Callback<ArrayList<PostResponse>>{
             override fun onResponse(
-                call: Call<ArrayList<Masjid>>,
-                response: Response<ArrayList<Masjid>>
+                call: Call<ArrayList<PostResponse>>,
+                response: Response<ArrayList<PostResponse>>
             ) {
-                val responseCode = response.code().toString()
-                val adapter = PengajianAdapter(daftar, object : PengajianAdapter.OnItemClickCallback{
-                    override fun onItemClick(data: Masjid) {
-                        val intent = Intent(this@HasilCariPengajianTerdekatActivity, DetailPengajianMasjidActivity::class.java)
-                        intent.putExtra(DetailPengajianMasjidActivity.EXTRA_NAME, data.namaMasjid)
-                        startActivity(intent)
-                    }
-                })
-                lblMasjid.text = responseCode
-                response.body()?.let { daftar.addAll(it)}
-                adapter.notifyDataSetChanged()
+                response.body()?.let{list.addAll(it)}
+                val adapter  = PengajianTerdekatAdapter(list)
                 mRecyclerView.adapter = adapter
             }
 
-            override fun onFailure(call: Call<ArrayList<Masjid>>, t: Throwable) {
-                Toast.makeText(applicationContext, "Connection Failure", Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<ArrayList<PostResponse>>, t: Throwable) {
+
             }
 
         })
-
-//        for (i in 0 until listMasjid.size){
-//
-//            daftar.add(
-//                Masjid(
-//                    listMasjid.get(i),
-//                    listJudul.get(i),
-//                    listWaktu.get(i),
-//                    listJarak.get(i)
-//                )
-//            )
-//
-//            if(listMasjid.size - 1 == i){
-                // init adapter yang telah dibuat tadi
-//                val adapter = PengajianAdapter(this,daftar)
-//                val adapter = PengajianAdapter(this, daftar, object : PengajianAdapter.OnItemClickCallback{
-//                    override fun onItemClick(data: Masjid) {
-//                        val intent = Intent(this@HasilCariPengajianTerdekatActivity, DetailPengajianMasjidActivity::class.java)
-//                        intent.putExtra(DetailPengajianMasjidActivity.EXTRA_NAME, data.namaMasjid)
-//                        startActivity(intent)
-//                    }
-//                })
-//                adapter.notifyDataSetChanged()
-//
-//                //tampilkan data dalam recycler view
-//                mRecyclerView.adapter = adapter
-//            }
-
-//        }
     }
 }
