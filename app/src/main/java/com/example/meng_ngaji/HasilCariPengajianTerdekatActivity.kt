@@ -3,10 +3,16 @@ package com.example.meng_ngaji
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meng_ngaji.helper.Masjid
 import com.example.meng_ngaji.helper.PengajianAdapter
+import com.example.meng_ngaji.helper.RetrofitClient
 import kotlinx.android.synthetic.main.activity_hasil_cari_pengajian_terdekat.*
+import kotlinx.android.synthetic.main.list_masjid.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HasilCariPengajianTerdekatActivity : AppCompatActivity() {
     val daftar = ArrayList<Masjid>()
@@ -30,37 +36,62 @@ class HasilCariPengajianTerdekatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hasil_cari_pengajian_terdekat)
-
+        
         mRecyclerView.setHasFixedSize(true)
         mRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        for (i in 0 until listMasjid.size){
-
-            daftar.add(
-                Masjid(
-                    listMasjid.get(i),
-                    listJudul.get(i),
-                    listWaktu.get(i),
-                    listJarak.get(i)
-                )
-            )
-
-            if(listMasjid.size - 1 == i){
-                // init adapter yang telah dibuat tadi
-//                val adapter = PengajianAdapter(this,daftar)
-                val adapter = PengajianAdapter(this, daftar, object : PengajianAdapter.OnItemClickCallback{
+        RetrofitClient.instance.getPosts().enqueue(object : Callback<ArrayList<Masjid>>{
+            override fun onResponse(
+                call: Call<ArrayList<Masjid>>,
+                response: Response<ArrayList<Masjid>>
+            ) {
+                val responseCode = response.code().toString()
+                val adapter = PengajianAdapter(daftar, object : PengajianAdapter.OnItemClickCallback{
                     override fun onItemClick(data: Masjid) {
                         val intent = Intent(this@HasilCariPengajianTerdekatActivity, DetailPengajianMasjidActivity::class.java)
                         intent.putExtra(DetailPengajianMasjidActivity.EXTRA_NAME, data.namaMasjid)
                         startActivity(intent)
                     }
                 })
+                lblMasjid.text = responseCode
+                response.body()?.let { daftar.addAll(it)}
                 adapter.notifyDataSetChanged()
-
-                //tampilkan data dalam recycler view
                 mRecyclerView.adapter = adapter
             }
 
-        }
+            override fun onFailure(call: Call<ArrayList<Masjid>>, t: Throwable) {
+                Toast.makeText(applicationContext, "Connection Failure", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
+//        for (i in 0 until listMasjid.size){
+//
+//            daftar.add(
+//                Masjid(
+//                    listMasjid.get(i),
+//                    listJudul.get(i),
+//                    listWaktu.get(i),
+//                    listJarak.get(i)
+//                )
+//            )
+//
+//            if(listMasjid.size - 1 == i){
+                // init adapter yang telah dibuat tadi
+//                val adapter = PengajianAdapter(this,daftar)
+//                val adapter = PengajianAdapter(this, daftar, object : PengajianAdapter.OnItemClickCallback{
+//                    override fun onItemClick(data: Masjid) {
+//                        val intent = Intent(this@HasilCariPengajianTerdekatActivity, DetailPengajianMasjidActivity::class.java)
+//                        intent.putExtra(DetailPengajianMasjidActivity.EXTRA_NAME, data.namaMasjid)
+//                        startActivity(intent)
+//                    }
+//                })
+//                adapter.notifyDataSetChanged()
+//
+//                //tampilkan data dalam recycler view
+//                mRecyclerView.adapter = adapter
+//            }
+
+//        }
     }
 }
