@@ -35,7 +35,7 @@
             android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" />
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".DetailProfilActivity"
@@ -45,7 +45,7 @@
                 android:value=".DetailProfilActivity" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".HomeActivity"
             android:exported="true" />
         <activity
             android:name=".DetailPengajianMasjidActivity"

@@ -1,46 +1,82 @@
 package com.example.meng_ngaji
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
+import com.example.meng_ngaji.helper.*
 import kotlinx.android.synthetic.main.activity_main.*
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_home.*
+import okhttp3.internal.Internal.instance
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+    private lateinit var tvDaftar : TextView
+    private var statusLogin = false
+    private lateinit var s: SharedPref
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bottomNavigationView.setOnNavigationItemSelectedListener(onBottomNavigationListener)
-        var fragment = supportFragmentManager.beginTransaction()
-        fragment.add(R.id.fl, HomeFragment())
-        fragment.commit()
+
+        tvDaftar = findViewById(R.id.textViewDaftar)
+        tvDaftar.setOnClickListener(this)
+
+        s = SharedPref(this)
+
+        buttonLogin.setOnClickListener {
+            login()
+        }
     }
 
-    private val onBottomNavigationListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        var selectedFragment : Fragment = HomeFragment()
-
-        when(item.itemId) {
-            R.id.user -> {
-                selectedFragment = ProfileFragment()
-            }
-            R.id.home -> {
-                selectedFragment = HomeFragment()
-            }
-            R.id.masjid -> {
-                selectedFragment = MasjidFragment()
-            }
-            R.id.pengajian -> {
-                selectedFragment = PengajianFragment()
-            }
-            R.id.prayer -> {
-                selectedFragment = PrayerFragment()
-            }
+    fun login() {
+        if (editEmail.text.isEmpty()) {
+            editEmail.error = "Kolom Email tidak boleh kosong"
+            editEmail.requestFocus()
+            return
+        } else if (editPassword.text.isEmpty()) {
+            editPassword.error = "Kolom Password tidak boleh kosong"
+            editPassword.requestFocus()
+            return
         }
 
-        var fragment = supportFragmentManager.beginTransaction()
-        fragment.replace(R.id.fl, selectedFragment)
-        fragment.commit()
-        true
+        val retro = Retro().getRetroClientInstance().create(UserApi::class.java)
+        retro.login(editEmail.text.toString(), editPassword.text.toString()).enqueue(object : Callback<ResponModel> {
+            override fun onFailure(call: Call<ResponModel>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "Error:" + t.message, Toast.LENGTH_SHORT).show()
+            }
 
+            override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
+                val respon = response.body()!!
+                if (respon.success == 1) {
+                    s.setStatusLogin(true)
+                    s.setUser(respon.user)
+                    s.setString(s.nama, respon.user.nama)
+                    s.setString(s.no_hp, respon.user.no_hp)
+
+                    val intent = Intent(this@MainActivity, HomeActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this@MainActivity, "Error:" + respon.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
+
+    override fun onClick(v: View) {
+        when(v.id){
+            R.id.textViewDaftar ->{
+                val intentAkun = Intent(this@MainActivity, RegisterActivity::class.java)
+                startActivity(intentAkun)
+            }
+        }
+    }
+
 }

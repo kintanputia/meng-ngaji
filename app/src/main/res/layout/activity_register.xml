@@ -50,7 +50,7 @@
         app:layout_constraintVertical_bias="0.224" />
 
     <EditText
-        android:id="@+id/editTextNamaLengkap"
+        android:id="@+id/etNamaLengkap"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:background="@drawable/ic_form_register"
@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.348" />
 
     <EditText
-        android:id="@+id/editTextNoHp"
+        android:id="@+id/etNo_Hp"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:background="@drawable/ic_form_register"
@@ -106,7 +106,7 @@
         app:layout_constraintVertical_bias="0.472" />
 
     <EditText
-        android:id="@+id/editTextEmailAddress"
+        android:id="@+id/etEmailAddress"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:background="@drawable/ic_form_register"
@@ -134,7 +134,7 @@
         app:layout_constraintVertical_bias="0.598" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/etPassword"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:background="@drawable/ic_form_register"

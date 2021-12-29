@@ -7,14 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
+import android.widget.TextView
 import androidx.cardview.widget.CardView
-import com.example.meng_ngaji.helper.Profile
-import com.example.meng_ngaji.helper.Retro
-import com.example.meng_ngaji.helper.UserApi
-import com.example.meng_ngaji.helper.UserResponse
-import kotlinx.android.synthetic.main.fragment_prayer.*
+import com.example.meng_ngaji.helper.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,17 +30,22 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private lateinit var card1 : CardView
     private lateinit var card2 : CardView
     private lateinit var card3 : CardView
+    lateinit var tvNama: TextView
+    lateinit var tvEmail: TextView
+
+    private lateinit var s: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getProfil()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_profile, container, false)
         val view: View = inflater!!.inflate(R.layout.fragment_profile, container, false)
+        init(view)
+
+        s = SharedPref(requireActivity())
 
         val card1: CardView = view.findViewById(R.id.cardDetailAkun)
         val card2: CardView = view.findViewById(R.id.cardUbahSandi)
@@ -54,6 +54,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         card1.setOnClickListener(this)
         card2.setOnClickListener(this)
         card3.setOnClickListener(this)
+
+        setData()
         return view
     }
 
@@ -80,27 +82,23 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 startActivity(intentAkun)
             }
             R.id.cardKeluar -> {
-                val intentAkun = Intent(context, LoginActivity::class.java)
+                s.setStatusLogin(false)
+                val intentAkun = Intent(context, MainActivity::class.java)
                 startActivity(intentAkun)
             }
         }
     }
 
-    fun getProfil(){
-        val retro = Retro().getRetroClientInstance().create(UserApi::class.java)
-        retro.getProfil().enqueue(object : Callback<List<Profile>> {
-            override fun onFailure(call: Call<List<Profile>>, t: Throwable) {
-                Log.e("Failed", t.message.toString())
-            }
+    fun setData() {
+        val user = s.getUser()!!
 
-            override fun onResponse(call: Call<List<Profile>>, response: Response<List<Profile>>) {
-                val profile = response.body()
-                for(p in profile!!){
-                    tvNama.text = p.nama
-                    tvEmail.text = p.email
-//                    Log.e("Hasil", p.nama)
-                }
-            }
-        })
+        tvNama.text = user.nama
+        tvEmail.text = user.email
     }
+
+    private fun init(view: View) {
+        tvNama = view.findViewById(R.id.tvNama)
+        tvEmail = view.findViewById(R.id.tvEmail)
+    }
+
 }

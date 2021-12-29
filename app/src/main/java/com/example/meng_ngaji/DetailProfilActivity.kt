@@ -6,9 +6,7 @@ import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import com.example.meng_ngaji.helper.Profile
-import com.example.meng_ngaji.helper.Retro
-import com.example.meng_ngaji.helper.UserApi
+import com.example.meng_ngaji.helper.*
 import kotlinx.android.synthetic.main.activity_detail_profil.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import retrofit2.Call
@@ -16,6 +14,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DetailProfilActivity : AppCompatActivity() {
+
+    private lateinit var s: SharedPref
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_profil)
@@ -32,25 +33,17 @@ class DetailProfilActivity : AppCompatActivity() {
             setDisplayShowHomeEnabled(true)
         }
 
-        getDetailProfil()
+        s = SharedPref(this)
+        setData()
     }
 
-    fun getDetailProfil(){
-        val retro = Retro().getRetroClientInstance().create(UserApi::class.java)
-        retro.getDetailProfil().enqueue(object : Callback<List<Profile>> {
-            override fun onFailure(call: Call<List<Profile>>, t: Throwable) {
-                Log.e("Failed", t.message.toString())
-            }
+    fun setData() {
+        val user = s.getUser()!!
 
-            override fun onResponse(call: Call<List<Profile>>, response: Response<List<Profile>>) {
-                val detail = response.body()
-                for(n in detail!!){
-                    etNama.text = Editable.Factory.getInstance().newEditable(n.nama)
-                    etEmail.text = Editable.Factory.getInstance().newEditable(n.email)
-                    etNoHp.text = Editable.Factory.getInstance().newEditable(n.no_hp)
-                }
-            }
-        })
+        etNama.text = Editable.Factory.getInstance().newEditable(user.nama)
+        etEmail.text = Editable.Factory.getInstance().newEditable(user.email)
+        etNoHp.text = Editable.Factory.getInstance().newEditable(user.no_hp)
     }
+
 
 }

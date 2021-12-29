@@ -1,19 +1,24 @@
 package com.example.meng_ngaji.helper
 
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface UserApi {
-    @POST("api/login")
+
+    @FormUrlEncoded
+    @POST("register")
+    fun register(
+        @Field("nama") nama: String,
+        @Field("email") email: String,
+        @Field("no_hp") no_hp: String,
+        @Field("password") password: String
+    ): Call<ResponModel>
+
+    @FormUrlEncoded
+    @POST("login")
     fun login(
-        @Body userRequest: UserRequest
-    ): Call<UserResponse>
+        @Field("email") email:String,
+        @Field("password") password: String
+    ):Call<ResponModel>
 
-    @GET("profil")
-    fun getProfil() : Call<List<Profile>>
-
-    @GET("profil/detail")
-    fun getDetailProfil() : Call<List<Profile>>
 }
