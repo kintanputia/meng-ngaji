@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meng_ngaji.helper.Terjadwal
-import com.example.meng_ngaji.helper.TerjadwalAdapter
+import com.example.meng_ngaji.adapter.TerjadwalAdapter
 import kotlinx.android.synthetic.main.fragment_pengajian.*
 import kotlinx.android.synthetic.main.fragment_pengajian.mRecyclerView
 
