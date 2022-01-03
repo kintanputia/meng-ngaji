@@ -14,6 +14,6 @@ class DetailPengajianMasjidActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_pengajian_masjid)
 
-        nama_masjid.setText(intent.getStringExtra(EXTRA_NAME))
+        nama_masjid.setText("Masjid " + intent.getStringExtra(EXTRA_NAME))
     }
 }

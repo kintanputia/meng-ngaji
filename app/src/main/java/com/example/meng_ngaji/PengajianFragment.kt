@@ -7,10 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.meng_ngaji.adapter.PengajianAdapter
+import com.example.meng_ngaji.adapter.PengajianTerdekatAdapter
 import com.example.meng_ngaji.helper.Terjadwal
 import com.example.meng_ngaji.adapter.TerjadwalAdapter
+import com.example.meng_ngaji.helper.PostResponse
+import com.example.meng_ngaji.helper.RetrofitClient
+import kotlinx.android.synthetic.main.activity_hasil_cari_pengajian_terdekat.*
 import kotlinx.android.synthetic.main.fragment_pengajian.*
 import kotlinx.android.synthetic.main.fragment_pengajian.mRecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,20 +31,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class PengajianFragment : Fragment(){
-    val daftar = ArrayList<Terjadwal>()
-    val listJudul = arrayOf(
-        "Meraih surga Allah",
-        "Mencintai Rasulullah"
-    )
-    val listTanggal = arrayOf(
-        "2021/11/10",
-        "2021/11/15"
-    )
-    val listJam = arrayOf(
-        "09.00",
-        "19.00"
-    )
 
+    val list = ArrayList<PostResponse>()
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -61,31 +57,7 @@ class PengajianFragment : Fragment(){
             startActivity(Intent(context, HasilCariPengajianTerdekatActivity::class.java))
         }
         search.setOnClickListener(){
-            startActivity(Intent(context, HasilCariPengajianActivity::class.java))
-        }
-
-        mRecyclerView.setHasFixedSize(true)
-        mRecyclerView.layoutManager = LinearLayoutManager(activity)
-
-        for (i in 0 until listJudul.size){
-
-            daftar.add(
-                Terjadwal(
-                    listJudul.get(i),
-                    listTanggal.get(i),
-                    listJam.get(i)
-                )
-            )
-
-            if(listJudul.size - 1 == i){
-                // init adapter yang telah dibuat tadi
-                val adapter = TerjadwalAdapter(this,daftar)
-                adapter.notifyDataSetChanged()
-
-                //tampilkan data dalam recycler view
-                mRecyclerView.adapter = adapter
-            }
-
+            searchKajian()
         }
     }
 
@@ -107,5 +79,11 @@ class PengajianFragment : Fragment(){
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    fun searchKajian(){
+        val intent = Intent(context, HasilCariPengajianActivity::class.java)
+        intent.putExtra("nama_masjid", cariMasjid.text.toString())
+        startActivity(intent)
     }
 }
