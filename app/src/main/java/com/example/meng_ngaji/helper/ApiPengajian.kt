@@ -15,4 +15,10 @@ interface ApiPengajian {
     fun searchPengajian(
         @Field("nama_masjid") nama_masjid:String?
     ): Call<ArrayList<Masjid>>
+
+    @FormUrlEncoded
+    @POST("daftar_pengajian")
+    fun daftarPengajian(
+        @Field("id_masjid") id_masjid:Int
+    ): Call<ArrayList<PengajianMasjid>>
 }

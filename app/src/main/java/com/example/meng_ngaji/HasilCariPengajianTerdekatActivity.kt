@@ -52,6 +52,8 @@ class HasilCariPengajianTerdekatActivity : AppCompatActivity() {
                         val manageDetailIntent = Intent(this@HasilCariPengajianTerdekatActivity, DetailPengajianMasjidActivity::class.java)
                             .apply {
                                 putExtra(DetailPengajianMasjidActivity.EXTRA_NAME, data.nama_masjid)
+                                putExtra(DetailPengajianMasjidActivity.EXTRA_ADRESS, data.alamat_masjid)
+                                putExtra(DetailPengajianMasjidActivity.EXTRA_ID, data.id_masjid)
                             }
                         startActivity(manageDetailIntent)
                     }
