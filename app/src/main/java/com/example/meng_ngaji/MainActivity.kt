@@ -56,8 +56,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 if (respon.success == 1) {
                     s.setStatusLogin(true)
                     s.setUser(respon.user)
-                    s.setString(s.nama, respon.user.nama)
-                    s.setString(s.no_hp, respon.user.no_hp)
+//                    s.setString(s.nama, respon.user.nama)
+//                    s.setString(s.no_hp, respon.user.no_hp)
 
                     val intent = Intent(this@MainActivity, HomeActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)

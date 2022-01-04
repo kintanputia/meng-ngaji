@@ -10,23 +10,25 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:elevation="4dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/btnEditUser"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="170dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_buttonedit"
             android:text="Simpan"
-            android:textSize="17sp"
-            android:fontFamily="sans-serif"
-            android:gravity="center_vertical"
-            android:textColor="@color/black"
-            android:layout_marginStart="238dp"
-            />
+            android:textSize="15sp"
+            android:textColor="@color/black"/>
+
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
