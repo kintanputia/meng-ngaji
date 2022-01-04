@@ -21,6 +21,11 @@ interface UserApi {
         @Field("password") password: String
     ):Call<ResponModel>
 
+    @GET("user/{id}")
+    fun user(
+        @Path("id") id: Int
+    ): Call<ResponModel>
+
     @FormUrlEncoded
     @PUT("update-user/{id}")
     fun editUser(

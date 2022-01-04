@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.meng_ngaji.helper.*
 import kotlinx.android.synthetic.main.activity_detail_profil.*
 import kotlinx.android.synthetic.main.activity_detail_profil.toolbar
@@ -45,12 +46,32 @@ class DetailProfilActivity : AppCompatActivity() {
         setData()
     }
 
-    fun setData() {
+//    fun setData() {
+//        val user = s.getUser()!!
+//
+//        etNama.text = Editable.Factory.getInstance().newEditable(user.nama)
+//        etEmail.text = Editable.Factory.getInstance().newEditable(user.email)
+//        etNoHp.text = Editable.Factory.getInstance().newEditable(user.no_hp)
+//
+//    }
+
+    fun setData(){
         val user = s.getUser()!!
 
-        etNama.text = Editable.Factory.getInstance().newEditable(user.nama)
-        etEmail.text = Editable.Factory.getInstance().newEditable(user.email)
-        etNoHp.text = Editable.Factory.getInstance().newEditable(user.no_hp)
+        val retro = Retro().getRetroClientInstance().create(UserApi::class.java)
+        retro.user(user.id).enqueue(object : Callback<ResponModel> {
+            override fun onFailure(call: Call<ResponModel>, t: Throwable) {
+                Log.e("Failed", t.message.toString())
+            }
+            override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
+                val respon = response.body()!!
+                if (respon.success == 1) {
+                    etNama.text = Editable.Factory.getInstance().newEditable(respon.user.nama)
+                    etEmail.text = Editable.Factory.getInstance().newEditable(respon.user.email)
+                    etNoHp.text = Editable.Factory.getInstance().newEditable(respon.user.no_hp)
+                }
+            }
+        })
     }
 
     fun editUserApi(){
@@ -75,4 +96,5 @@ class DetailProfilActivity : AppCompatActivity() {
             }
         })
     }
+
 }

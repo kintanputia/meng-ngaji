@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import com.example.meng_ngaji.helper.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,22 +32,21 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private lateinit var card1 : CardView
     private lateinit var card2 : CardView
     private lateinit var card3 : CardView
-    lateinit var tvNama: TextView
-    lateinit var tvEmail: TextView
 
     private lateinit var s: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        s = SharedPref(requireActivity())
+
+        setData()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view: View = inflater!!.inflate(R.layout.fragment_profile, container, false)
-        init(view)
-
-        s = SharedPref(requireActivity())
+//        init(view)
 
         val card1: CardView = view.findViewById(R.id.cardDetailAkun)
         val card2: CardView = view.findViewById(R.id.cardUbahSandi)
@@ -55,7 +56,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         card2.setOnClickListener(this)
         card3.setOnClickListener(this)
 
-        setData()
         return view
     }
 
@@ -89,16 +89,33 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    fun setData() {
+    fun setData(){
         val user = s.getUser()!!
 
-        tvNama.text = user.nama
-        tvEmail.text = user.email
+        val retro = Retro().getRetroClientInstance().create(UserApi::class.java)
+        retro.user(user.id).enqueue(object : Callback<ResponModel> {
+            override fun onFailure(call: Call<ResponModel>, t: Throwable) {
+                Log.e("Failed", t.message.toString())
+            }
+            override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
+                val respon = response.body()!!
+                if (respon.success == 1) {
+                    tvNama.text = respon.user.nama
+                    tvEmail.text = respon.user.email
+                }
+            }
+        })
     }
 
-    private fun init(view: View) {
-        tvNama = view.findViewById(R.id.tvNama)
-        tvEmail = view.findViewById(R.id.tvEmail)
-    }
+//    fun setData() {
+//        val user = s.getUser()!!
+//
+//        tvNama.text = user.nama
+//        tvEmail.text = user.email
+//    }
+
+//    private fun init(view: View) {
+//
+//    }
 
 }
