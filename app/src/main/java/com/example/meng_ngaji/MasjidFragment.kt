@@ -1,85 +1,246 @@
 package com.example.meng_ngaji
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.IntentSender
+import android.content.pm.PackageManager
+import android.location.Location
+import android.os.Build
 import android.os.Bundle
+import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.inflate
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.res.ColorStateListInflaterCompat.inflate
+import androidx.core.graphics.drawable.DrawableCompat.inflate
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.tasks.CancellationTokenSource
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_pengajian.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+public class MasjidFragment : Fragment(), OnMapReadyCallback {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MasjidFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class MasjidFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    //Initialize 2
+    private lateinit var mGoogleMap: GoogleMap
+    private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
+    private var permissionToRequest = mutableListOf<String>()
+    private var isLocationPermissionOk = false
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
+    private var fusedLocationProviderClient: FusedLocationProviderClient? = null
+    private lateinit var currentLocation: Location
+    private var currentMarker: Marker? = null
+    private var raduis = 1500
 
-    private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_masjid, container, false)
+    ): View {
+        val view = inflater.inflate(R.layout.fragment_masjid, container, false)
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mapFragment =  childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
+
+        permissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permission ->
+                isLocationPermissionOk =
+                    permission[Manifest.permission.ACCESS_COARSE_LOCATION] == true
+                            && permission[Manifest.permission.ACCESS_FINE_LOCATION] == true
+
+                if (isLocationPermissionOk)
+                    setUpGoogleMap()
+                else
+                    Snackbar.make(view, "Location permission denied", Snackbar.LENGTH_LONG)
+                        .show()
+            }
+
+        val mapFragment =
+            (childFragmentManager.findFragmentById(R.id.GooleMap) as SupportMapFragment?)
+        mapFragment?.getMapAsync(this)
+
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MasjidFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MasjidFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onMapReady(googleMap: GoogleMap) {
+        mGoogleMap = googleMap
+        when {
+            ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                isLocationPermissionOk = true
+                setUpGoogleMap()
+            }
+
+            ActivityCompat.shouldShowRequestPermissionRationale(
+                requireActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) -> {
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Location permission")
+                    .setMessage("Near me required location permission to access your location")
+                    .setPositiveButton("Ok") { _, _ ->
+                        requestLocation()
+                    }.create().show()
+            }
+
+            else -> {
+                requestLocation()
+            }
+        }
+        mGoogleMap?.mapType = GoogleMap.MAP_TYPE_HYBRID
+
+
+    }
+
+    private fun requestLocation() {
+        permissionToRequest.add(Manifest.permission.ACCESS_FINE_LOCATION)
+        permissionToRequest.add(Manifest.permission.ACCESS_COARSE_LOCATION)
+
+        permissionLauncher.launch(permissionToRequest.toTypedArray())
+    }
+
+    private fun setUpGoogleMap() {
+
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            isLocationPermissionOk = false
+            return
+        }
+        mGoogleMap.isMyLocationEnabled = true
+        mGoogleMap.uiSettings.isTiltGesturesEnabled = true
+
+        setUpLocationUpdate()
+    }
+
+    private fun setUpLocationUpdate() {
+        locationRequest = LocationRequest.create()
+        locationRequest.interval = 10000
+        locationRequest.fastestInterval = 5000
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                super.onLocationResult(locationResult)
+
+                for (location in locationResult?.locations) {
+                    Log.d("TAG", "onLocationResult: ${location.latitude} ${location.longitude}")
                 }
             }
+        }
+
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireContext())
+
+        starLocationUpdate()
     }
+
+    private fun starLocationUpdate() {
+        fusedLocationProviderClient?.requestLocationUpdates(
+            locationRequest,
+            locationCallback,
+            Looper.getMainLooper()
+        )?.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(requireContext(), "Location update start", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+        getCurrentLocation()
+    }
+
+
+    private fun getCurrentLocation() {
+        val fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireContext())
+
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            isLocationPermissionOk = false
+            return
+        }
+
+        fusedLocationProviderClient.lastLocation.addOnSuccessListener {
+
+            currentLocation = it
+            moveCameraToLocation(currentLocation)
+        }
+    }
+
+    private fun moveCameraToLocation(location: Location) {
+        val cameraUpdate = CameraUpdateFactory.newLatLngZoom(
+            LatLng(
+                location.latitude,
+                location.longitude
+            ), 17f
+        )
+
+        val markerOptions = MarkerOptions()
+            .position(LatLng(location.latitude, location.longitude))
+            .title("Current Location")
+            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+
+        currentMarker?.remove()
+        currentMarker = mGoogleMap.addMarker(markerOptions)
+        currentMarker?.tag = 703
+        mGoogleMap.animateCamera(cameraUpdate)
+
+    }
+
+    private fun stopLocationUpdate() {
+        fusedLocationProviderClient?.removeLocationUpdates(locationCallback)
+        Log.d("TAG", "stopLocationUpdate: Location update stop")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopLocationUpdate()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (fusedLocationProviderClient != null) {
+            starLocationUpdate()
+            currentMarker?.remove()
+        }
+    }
+
+
 }
