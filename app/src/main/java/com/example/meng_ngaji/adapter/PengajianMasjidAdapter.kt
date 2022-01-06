@@ -5,34 +5,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meng_ngaji.R
-import com.example.meng_ngaji.helper.Masjid
-import kotlinx.android.synthetic.main.list_masjid.view.*
+import com.example.meng_ngaji.helper.PengajianMasjid
+import com.example.meng_ngaji.helper.PostResponse
+import kotlinx.android.synthetic.main.dialog_view.view.*
+import kotlinx.android.synthetic.main.list_pengajian.view.*
 
-class PengajianAdapter(private val list: ArrayList<Masjid>): RecyclerView.Adapter<PengajianAdapter.PostViewHolder>(){
+class PengajianMasjidAdapter(private val list: ArrayList<PengajianMasjid>): RecyclerView.Adapter<PengajianMasjidAdapter.PostViewHolder>() {
     inner class PostViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        fun bind(postResponse: Masjid){
+        fun bind(postResponse: PengajianMasjid){
             with(itemView){
-                val namaMasjid = "Masjid ${postResponse.nama_masjid}\n"
-                val waktuPengajian = "${postResponse.waktu_pengajian}\n"
-                val tglPengajian = "${postResponse.tgl_pengajian}\n"
                 val judulPengajian = "${postResponse.judul_pengajian}\n"
-                lblMasjid.text = namaMasjid
-                lblJudul.text = judulPengajian
-                lblWaktu.text = waktuPengajian
-                lblTgl.text = tglPengajian
+                tvJudul.text = judulPengajian
             }
         }
     }
 
-    private lateinit var onItemClickCallback: OnItemClickCallback
+    private lateinit var onItemClickCallback: PengajianMasjidAdapter.OnItemClickCallback
 
     fun setOnItemClickCallback(
-        onItemClickCallback: OnItemClickCallback) {
+        onItemClickCallback: PengajianMasjidAdapter.OnItemClickCallback
+    ) {
         this.onItemClickCallback = onItemClickCallback
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val view  = LayoutInflater.from(parent.context).inflate(R.layout.list_masjid, parent, false)
+        val view  = LayoutInflater.from(parent.context).inflate(R.layout.list_pengajian, parent, false)
         return PostViewHolder(view)
     }
 
@@ -46,6 +43,6 @@ class PengajianAdapter(private val list: ArrayList<Masjid>): RecyclerView.Adapte
     override fun getItemCount(): Int = list.size
 
     interface OnItemClickCallback {
-        fun onItemClick(data: Masjid)
+        fun onItemClick(data: PengajianMasjid)
     }
 }

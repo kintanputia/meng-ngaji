@@ -24,6 +24,14 @@ class PengajianTerdekatAdapter (private val list: ArrayList<PostResponse>): Recy
         }
     }
 
+    private lateinit var onItemClickCallback: PengajianTerdekatAdapter.OnItemClickCallback
+
+    fun setOnItemClickCallback(
+        onItemClickCallback: PengajianTerdekatAdapter.OnItemClickCallback
+    ) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_masjid_terdekat, parent, false)
         return PostViewHolder(view)
@@ -31,13 +39,14 @@ class PengajianTerdekatAdapter (private val list: ArrayList<PostResponse>): Recy
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         holder.bind(list[position])
+        holder.itemView.setOnClickListener() {
+            onItemClickCallback.onItemClick(list[holder.adapterPosition])
+        }
     }
 
     override fun getItemCount(): Int = list.size
-}
 
-//    parameter : private var onItemClickCallback: OnItemClickCallback
-//    fun setOnItemClickCallback(
-//        onItemClickCallback: OnItemClickCallback) {
-//        this.onItemClickCallback = onItemClickCallback
-//    }
+    interface OnItemClickCallback {
+        fun onItemClick(data: PostResponse)
+    }
+}
