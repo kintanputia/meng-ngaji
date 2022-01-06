@@ -35,4 +35,11 @@ interface UserApi {
         @Field("email") email: String,
         @Field("no_hp") no_hp: String?,
     ): Call<ResponModel>
+
+    @FormUrlEncoded
+    @PUT("change-pw/{id}")
+    fun editPassword(
+        @Path("id") id: Int,
+        @Field("password") password: String?,
+    ): Call<ResponModel>
 }

@@ -46,15 +46,6 @@ class DetailProfilActivity : AppCompatActivity() {
         setData()
     }
 
-//    fun setData() {
-//        val user = s.getUser()!!
-//
-//        etNama.text = Editable.Factory.getInstance().newEditable(user.nama)
-//        etEmail.text = Editable.Factory.getInstance().newEditable(user.email)
-//        etNoHp.text = Editable.Factory.getInstance().newEditable(user.no_hp)
-//
-//    }
-
     fun setData(){
         val user = s.getUser()!!
 
