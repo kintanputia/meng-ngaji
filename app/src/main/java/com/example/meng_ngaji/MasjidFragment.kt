@@ -1,31 +1,20 @@
 package com.example.meng_ngaji
 
 import android.Manifest
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
-import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import androidx.core.content.res.ColorStateListInflaterCompat.inflate
-import androidx.core.graphics.drawable.DrawableCompat.inflate
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -35,14 +24,12 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_pengajian.*
 
-public class MasjidFragment : Fragment(), OnMapReadyCallback {
+class MasjidFragment : Fragment(), OnMapReadyCallback {
 
     //Initialize 2
-    private lateinit var mGoogleMap: GoogleMap
+    private var mGoogleMap: GoogleMap? = null
     private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
     private var permissionToRequest = mutableListOf<String>()
     private var isLocationPermissionOk = false
@@ -54,13 +41,13 @@ public class MasjidFragment : Fragment(), OnMapReadyCallback {
     private var raduis = 1500
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.fragment_masjid, container, false)
 
-        return view
+        return inflater.inflate(R.layout.fragment_masjid, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -87,6 +74,7 @@ public class MasjidFragment : Fragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
+
         mGoogleMap = googleMap
         when {
             ActivityCompat.checkSelfPermission(
@@ -115,7 +103,6 @@ public class MasjidFragment : Fragment(), OnMapReadyCallback {
         }
         mGoogleMap?.mapType = GoogleMap.MAP_TYPE_HYBRID
 
-
     }
 
     private fun requestLocation() {
@@ -138,13 +125,14 @@ public class MasjidFragment : Fragment(), OnMapReadyCallback {
             isLocationPermissionOk = false
             return
         }
-        mGoogleMap.isMyLocationEnabled = true
-        mGoogleMap.uiSettings.isTiltGesturesEnabled = true
+        mGoogleMap?.isMyLocationEnabled = true
+        mGoogleMap?.uiSettings?.isTiltGesturesEnabled = true
 
         setUpLocationUpdate()
     }
 
     private fun setUpLocationUpdate() {
+
         locationRequest = LocationRequest.create()
         locationRequest.interval = 10000
         locationRequest.fastestInterval = 5000
@@ -153,7 +141,7 @@ public class MasjidFragment : Fragment(), OnMapReadyCallback {
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
 
-                for (location in locationResult?.locations) {
+                for (location in locationResult.locations) {
                     Log.d("TAG", "onLocationResult: ${location.latitude} ${location.longitude}")
                 }
             }
@@ -166,6 +154,18 @@ public class MasjidFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun starLocationUpdate() {
+
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+           isLocationPermissionOk = false
+            return
+        }
         fusedLocationProviderClient?.requestLocationUpdates(
             locationRequest,
             locationCallback,
@@ -195,12 +195,14 @@ public class MasjidFragment : Fragment(), OnMapReadyCallback {
         ) {
             isLocationPermissionOk = false
             return
-        }
 
+        }
         fusedLocationProviderClient.lastLocation.addOnSuccessListener {
 
             currentLocation = it
             moveCameraToLocation(currentLocation)
+        }.addOnFailureListener {
+            Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -218,9 +220,9 @@ public class MasjidFragment : Fragment(), OnMapReadyCallback {
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
 
         currentMarker?.remove()
-        currentMarker = mGoogleMap.addMarker(markerOptions)
+        currentMarker = mGoogleMap?.addMarker(markerOptions)
         currentMarker?.tag = 703
-        mGoogleMap.animateCamera(cameraUpdate)
+        mGoogleMap?.animateCamera(cameraUpdate)
 
     }
 
