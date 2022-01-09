@@ -1,14 +1,11 @@
 package com.example.meng_ngaji
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
-import android.view.View
-import android.widget.Button
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import com.example.meng_ngaji.helper.ResponModel
 import com.example.meng_ngaji.helper.*
 import kotlinx.android.synthetic.main.activity_detail_profil.*
 import kotlinx.android.synthetic.main.activity_detail_profil.toolbar

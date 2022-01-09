@@ -4,10 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.meng_ngaji.adapter.PengajianAdapter
 import com.example.meng_ngaji.adapter.PengajianTerdekatAdapter
-import com.example.meng_ngaji.helper.Masjid
-import com.example.meng_ngaji.helper.PostResponse
+import com.example.meng_ngaji.data_class.PostResponse
 import com.example.meng_ngaji.helper.RetrofitClient
 import kotlinx.android.synthetic.main.activity_detail_profil.*
 import kotlinx.android.synthetic.main.activity_hasil_cari_pengajian_terdekat.*

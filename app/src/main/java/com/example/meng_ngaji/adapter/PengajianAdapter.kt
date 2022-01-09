@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meng_ngaji.R
-import com.example.meng_ngaji.helper.Masjid
+import com.example.meng_ngaji.data_class.Masjid
 import kotlinx.android.synthetic.main.list_masjid.view.*
 
 class PengajianAdapter(private val list: ArrayList<Masjid>): RecyclerView.Adapter<PengajianAdapter.PostViewHolder>(){

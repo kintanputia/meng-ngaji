@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.example.meng_ngaji.helper.ResponModel
 import com.example.meng_ngaji.helper.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_home.*
-import okhttp3.internal.Internal.instance
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

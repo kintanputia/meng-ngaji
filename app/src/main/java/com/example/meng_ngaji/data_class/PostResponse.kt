@@ -1,4 +1,4 @@
-package com.example.meng_ngaji.helper
+package com.example.meng_ngaji.data_class
 
 import java.util.*
 

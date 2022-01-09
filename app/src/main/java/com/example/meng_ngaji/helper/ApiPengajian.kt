@@ -1,5 +1,9 @@
 package com.example.meng_ngaji.helper
 
+import com.example.meng_ngaji.data_class.Masjid
+import com.example.meng_ngaji.data_class.PengajianMasjid
+import com.example.meng_ngaji.data_class.PostResponse
+import com.example.meng_ngaji.data_class.Terjadwal
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -21,4 +25,17 @@ interface ApiPengajian {
     fun daftarPengajian(
         @Field("id_masjid") id_masjid:Int
     ): Call<ArrayList<PengajianMasjid>>
+
+    @FormUrlEncoded
+    @POST("add_pf")
+    fun addPf(
+        @Field("id_pengajian") id_pengajian:Int,
+        @Field("id_user") id_user:Int
+    ): Call<ArrayList<Terjadwal>>
+
+    @FormUrlEncoded
+    @POST("pengajian_favorit")
+    fun getPf(
+        @Field("id_user") id_user: Int
+    ): Call<ArrayList<Terjadwal>>
 }
