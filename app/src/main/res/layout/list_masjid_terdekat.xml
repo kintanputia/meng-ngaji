@@ -37,12 +37,11 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView9"
+                    android:id="@+id/ivMasjid"
                     android:layout_width="95dp"
                     android:layout_height="126dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.06"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/masjid3" />
@@ -51,13 +50,12 @@
                     android:id="@+id/lblMasjid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="128dp"
+                    android:layout_marginTop="16dp"
                     android:text="Nama Masjid"
                     android:textAlignment="textStart"
                     android:textSize="18dp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.545"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,23 +63,20 @@
                     android:id="@+id/lblJudul"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="168dp"
+                    android:layout_marginTop="56dp"
                     android:text="Judul Pengajian"
                     android:textAlignment="textStart"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.433"
-                    app:layout_constraintStart_toEndOf="@+id/imageView9"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.435" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imageView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="128dp"
                     android:layout_marginTop="52dp"
-                    app:layout_constraintEnd_toStartOf="@+id/lblJudul"
-                    app:layout_constraintHorizontal_bias="0.625"
-                    app:layout_constraintStart_toEndOf="@+id/imageView9"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_judul" />
 
@@ -89,19 +84,18 @@
                     android:id="@+id/imageView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.111"
-                    app:layout_constraintStart_toEndOf="@+id/imageView9"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView13"
+                    android:layout_marginStart="128dp"
+                    android:layout_marginTop="116dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_jarak" />
 
                 <TextView
                     android:id="@+id/lblWaktu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="180dp"
-                    android:layout_marginTop="84dp"
+                    android:layout_marginStart="168dp"
+                    android:layout_marginTop="88dp"
                     android:text="Jam"
                     android:textAlignment="textStart"
                     app:layout_constraintStart_toStartOf="parent"
@@ -111,31 +105,31 @@
                     android:id="@+id/imageView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="136dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="128dp"
+                    android:layout_marginTop="84dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView10"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_waktu" />
 
                 <TextView
                     android:id="@+id/lblJarak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="168dp"
                     android:layout_marginTop="116dp"
-                    android:layout_marginEnd="56dp"
                     android:text="Jarak dari pengguna"
                     android:textAlignment="textStart"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/lblTgl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="84dp"
+                    android:layout_marginStart="224dp"
+                    android:layout_marginTop="88dp"
                     android:text="Tanggal"
-                    app:layout_constraintStart_toEndOf="@+id/lblWaktu"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.meng_ngaji.R
 import com.example.meng_ngaji.data_class.Terjadwal
 import kotlinx.android.synthetic.main.list_pengajian2.view.*
+import java.text.SimpleDateFormat
 
 class TerjadwalAdapter(private val list: ArrayList<Terjadwal>) : RecyclerView.Adapter<TerjadwalAdapter.PostViewHolder>(){
     inner class PostViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -15,9 +16,13 @@ class TerjadwalAdapter(private val list: ArrayList<Terjadwal>) : RecyclerView.Ad
                 val waktuPengajian = "${postResponse.waktu_pengajian}\n"
                 val tglPengajian = "${postResponse.tgl_pengajian}\n"
                 val judulPengajian = "${postResponse.judul_pengajian}\n"
+
+                val formatter = SimpleDateFormat("yyyy-MM-dd")
+                val formatted = tglPengajian.format(formatter)
+
                 lblJudul.text = judulPengajian
                 lblJam.text = waktuPengajian
-                lblTanggal.text = tglPengajian
+                lblTanggal.text = formatted
             }
         }
     }
