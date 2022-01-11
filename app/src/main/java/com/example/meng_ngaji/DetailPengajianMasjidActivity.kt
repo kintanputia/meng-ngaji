@@ -1,17 +1,16 @@
 package com.example.meng_ngaji
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meng_ngaji.adapter.PengajianMasjidAdapter
-import com.example.meng_ngaji.helper.PengajianMasjid
+import com.example.meng_ngaji.data_class.PengajianMasjid
+import com.example.meng_ngaji.data_class.Terjadwal
 import com.example.meng_ngaji.helper.RetrofitClient
+import com.example.meng_ngaji.helper.SharedPref
 import kotlinx.android.synthetic.main.activity_detail_pengajian_masjid.*
 import kotlinx.android.synthetic.main.dialog_view.*
 import kotlinx.android.synthetic.main.dialog_view.view.*
@@ -22,6 +21,7 @@ import retrofit2.Response
 class DetailPengajianMasjidActivity : AppCompatActivity() {
 
     val list = ArrayList<PengajianMasjid>()
+    private lateinit var s: SharedPref
 
     companion object {
         const val EXTRA_NAME = "extra_name"
@@ -51,6 +51,8 @@ class DetailPengajianMasjidActivity : AppCompatActivity() {
 
                 adapter.setOnItemClickCallback(object : PengajianMasjidAdapter.OnItemClickCallback{
                     override fun onItemClick(data: PengajianMasjid) {
+                        s = SharedPref(this@DetailPengajianMasjidActivity)
+                        val user = s.getUser()!!
                         val view = LayoutInflater.from(this@DetailPengajianMasjidActivity).inflate(R.layout.dialog_view, null)
                         val builder = AlertDialog.Builder(this@DetailPengajianMasjidActivity)
                         builder.setView(view)
@@ -62,6 +64,35 @@ class DetailPengajianMasjidActivity : AppCompatActivity() {
                         view.tvJam.text = data.waktu_pengajian
                         view.tvTgl.text = data.tgl_pengajian.toString()
                         view.tvPengisi.text = data.pengisi_kajian
+
+                        view.btnReminder.setOnClickListener{
+
+                            RetrofitClient.instance.addPf(data.id_pengajian, user.id).enqueue(object: Callback<ArrayList<Terjadwal>>{
+                                override fun onResponse(
+                                    call: Call<ArrayList<Terjadwal>>,
+                                    response: Response<ArrayList<Terjadwal>>
+                                ) {
+                                    val text = "Pengajian berhasil ditambahkan ke daftar favorit"
+                                    val duration = Toast.LENGTH_SHORT
+
+                                    val toast = Toast.makeText(applicationContext, text, duration)
+                                    toast.show()
+                                    dialog.dismiss()
+                                }
+
+                                override fun onFailure(
+                                    call: Call<ArrayList<Terjadwal>>,
+                                    t: Throwable
+                                ) {
+                                    val text = "Error"
+                                    val duration = Toast.LENGTH_SHORT
+
+                                    val toast = Toast.makeText(applicationContext, text, duration)
+                                    toast.show()
+                                }
+
+                            })
+                        }
                     }
                 })
             }

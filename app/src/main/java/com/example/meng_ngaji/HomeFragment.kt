@@ -1,15 +1,25 @@
 package com.example.meng_ngaji
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentTransaction
+import com.example.meng_ngaji.data_class.PengajianTerdekat
+import com.example.meng_ngaji.data_class.Terjadwal
+import com.example.meng_ngaji.helper.RetrofitClient
+import com.example.meng_ngaji.helper.SharedPref
+import kotlinx.android.synthetic.main.activity_detail_pengajian_masjid.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +35,8 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var tvWaktuSolat : TextView
+    private lateinit var s: SharedPref
+    val data = ArrayList<PengajianTerdekat>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +98,24 @@ class HomeFragment : Fragment() {
 
         return view
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        s = SharedPref(requireActivity())
+        val user = s.getUser()!!
+        RetrofitClient.instance.getPt(user.id).enqueue(object: Callback<ArrayList<PengajianTerdekat>>{
+            override fun onResponse(
+                call: Call<ArrayList<PengajianTerdekat>>,
+                response: Response<ArrayList<PengajianTerdekat>>
+            ) {
+
+            }
+            override fun onFailure(call: Call<ArrayList<PengajianTerdekat>>, t: Throwable) {
+
+            }
+        })
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -107,7 +136,3 @@ class HomeFragment : Fragment() {
             }
     }
 }
-
-//private fun FragmentTransaction.replace(layout: Int, prayerFragment: PrayerFragment.Companion) {
-//
-//}

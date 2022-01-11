@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meng_ngaji.R
-import com.example.meng_ngaji.helper.Masjid
+import com.example.meng_ngaji.data_class.Masjid
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_masjid.view.*
+import java.text.SimpleDateFormat
 
 class PengajianAdapter(private val list: ArrayList<Masjid>): RecyclerView.Adapter<PengajianAdapter.PostViewHolder>(){
     inner class PostViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -16,10 +18,12 @@ class PengajianAdapter(private val list: ArrayList<Masjid>): RecyclerView.Adapte
                 val waktuPengajian = "${postResponse.waktu_pengajian}\n"
                 val tglPengajian = "${postResponse.tgl_pengajian}\n"
                 val judulPengajian = "${postResponse.judul_pengajian}\n"
+                val gambar = "${postResponse.url_gambar}\n"
                 lblMasjid.text = namaMasjid
                 lblJudul.text = judulPengajian
                 lblWaktu.text = waktuPengajian
                 lblTgl.text = tglPengajian
+                Picasso.get().load(gambar).fit().centerCrop().into(ivMasjid)
             }
         }
     }

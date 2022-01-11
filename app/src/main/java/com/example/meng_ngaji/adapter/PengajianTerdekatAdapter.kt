@@ -1,11 +1,13 @@
 package com.example.meng_ngaji.adapter
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meng_ngaji.R
-import com.example.meng_ngaji.helper.PostResponse
+import com.example.meng_ngaji.data_class.PostResponse
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_masjid_terdekat.view.*
 
 class PengajianTerdekatAdapter (private val list: ArrayList<PostResponse>): RecyclerView.Adapter<PengajianTerdekatAdapter.PostViewHolder>(){
@@ -16,18 +18,20 @@ class PengajianTerdekatAdapter (private val list: ArrayList<PostResponse>): Recy
                 val waktuPengajian = "${postResponse.waktu_pengajian}\n"
                 val tglPengajian = "${postResponse.tgl_pengajian}\n"
                 val judulPengajian = "${postResponse.judul_pengajian}\n"
+                val gambar = "${postResponse.url_gambar}\n"
                 lblMasjid.text = namaMasjid
                 lblJudul.text = judulPengajian
                 lblWaktu.text = waktuPengajian
                 lblTgl.text = tglPengajian
+                Picasso.get().load(gambar).fit().centerCrop().into(ivMasjid)
             }
         }
     }
 
-    private lateinit var onItemClickCallback: PengajianTerdekatAdapter.OnItemClickCallback
+    private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(
-        onItemClickCallback: PengajianTerdekatAdapter.OnItemClickCallback
+        onItemClickCallback: OnItemClickCallback
     ) {
         this.onItemClickCallback = onItemClickCallback
     }

@@ -7,12 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.meng_ngaji.adapter.PengajianAdapter
 import com.example.meng_ngaji.adapter.PengajianTerdekatAdapter
-import com.example.meng_ngaji.helper.Terjadwal
 import com.example.meng_ngaji.adapter.TerjadwalAdapter
-import com.example.meng_ngaji.helper.PostResponse
+import com.example.meng_ngaji.data_class.Terjadwal
 import com.example.meng_ngaji.helper.RetrofitClient
+import com.example.meng_ngaji.helper.SharedPref
 import kotlinx.android.synthetic.main.activity_hasil_cari_pengajian_terdekat.*
 import kotlinx.android.synthetic.main.fragment_pengajian.*
 import kotlinx.android.synthetic.main.fragment_pengajian.mRecyclerView
@@ -32,7 +31,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class PengajianFragment : Fragment(){
 
-    val list = ArrayList<PostResponse>()
+    val list = ArrayList<Terjadwal>()
+    private lateinit var s: SharedPref
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -59,6 +59,28 @@ class PengajianFragment : Fragment(){
         search.setOnClickListener(){
             searchKajian()
         }
+
+        //Recycler
+        mRecyclerView.setHasFixedSize(true)
+        mRecyclerView.layoutManager = LinearLayoutManager(activity)
+
+        s = SharedPref(requireActivity())
+        val user = s.getUser()!!
+
+        RetrofitClient.instance.getPf(user.id).enqueue(object: Callback<ArrayList<Terjadwal>>{
+            override fun onResponse(
+                call: Call<ArrayList<Terjadwal>>,
+                response: Response<ArrayList<Terjadwal>>
+            ) {
+                response.body()?.let{list.addAll(it)}
+                val adapter  = TerjadwalAdapter(list)
+                mRecyclerView.adapter = adapter
+            }
+            override fun onFailure(call: Call<ArrayList<Terjadwal>>, t: Throwable) {
+
+            }
+
+        })
     }
 
     companion object {
