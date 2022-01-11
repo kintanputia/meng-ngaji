@@ -106,16 +106,4 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             }
         })
     }
-
-//    fun setData() {
-//        val user = s.getUser()!!
-//
-//        tvNama.text = user.nama
-//        tvEmail.text = user.email
-//    }
-
-//    private fun init(view: View) {
-//
-//    }
-
 }

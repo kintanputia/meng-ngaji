@@ -18,17 +18,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RegisterActivity : AppCompatActivity(), View.OnClickListener {
+class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var bDaftar : Button
     private lateinit var s: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
-        bDaftar = findViewById(R.id.buttonDaftar)
-        bDaftar.setOnClickListener(this)
 
         s = SharedPref(this)
 
@@ -91,12 +87,4 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.buttonDaftar ->{
-                val intentAkun = Intent(this, MainActivity::class.java)
-                startActivity(intentAkun)
-            }
-        }
-    }
 }
