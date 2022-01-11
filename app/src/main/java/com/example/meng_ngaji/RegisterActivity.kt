@@ -73,7 +73,6 @@ class RegisterActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
                 val respon = response.body()!!
                 if (respon.success == 1) {
-                    s.setStatusLogin(true)
                     val intent = Intent(this@RegisterActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
