@@ -17,9 +17,13 @@ import com.example.meng_ngaji.helper.RetrofitClient
 import com.example.meng_ngaji.helper.SharedPref
 import kotlinx.android.synthetic.main.activity_detail_pengajian_masjid.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_prayer.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -101,6 +105,10 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val current = SimpleDateFormat("dd MMM yyyy")
+        val tanggal = current.format(Date())
+        tv_tanggalHome.text = tanggal
 
         s = SharedPref(requireActivity())
         val user = s.getUser()!!
