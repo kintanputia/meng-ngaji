@@ -26,10 +26,11 @@
             app:layout_constraintVertical_bias="0.023" />
 
         <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_tanggalHome"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
+            android:layout_marginLeft="60dp"
             android:text="Sabtu, 25 September"
             android:textColor="#F2F2F2"
             android:textSize="12sp"
