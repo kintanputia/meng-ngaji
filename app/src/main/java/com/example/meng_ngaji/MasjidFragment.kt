@@ -130,7 +130,7 @@ class MasjidFragment : Fragment(), OnMapReadyCallback {
                     getMarker(modelResults)
                     progressDialog?.dismiss()
                 } else {
-                    Toast.makeText(requireContext(), "Oops, Cannot get your location", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Oops, Cannot get mosque location", Toast.LENGTH_SHORT).show()
                     progressDialog?.dismiss()
                 }
                 progressDialog?.dismiss()
@@ -180,7 +180,7 @@ class MasjidFragment : Fragment(), OnMapReadyCallback {
                 )
             )
             mGoogleMap?.uiSettings?.setAllGesturesEnabled(true)
-            mGoogleMap?.uiSettings?.isZoomControlsEnabled = true
+
         }
     }
 
@@ -206,6 +206,7 @@ class MasjidFragment : Fragment(), OnMapReadyCallback {
         }
         mGoogleMap?.isMyLocationEnabled = true
         mGoogleMap?.uiSettings?.isTiltGesturesEnabled = true
+        mGoogleMap?.uiSettings?.isZoomControlsEnabled = true
 
         setUpLocationUpdate()
     }
