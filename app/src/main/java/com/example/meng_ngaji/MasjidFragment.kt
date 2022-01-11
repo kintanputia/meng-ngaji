@@ -2,6 +2,8 @@ package com.example.meng_ngaji
 
 import android.Manifest
 import android.app.AlertDialog
+import android.app.ProgressDialog
+import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -15,6 +17,9 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ViewModelProvider
+import com.example.meng_ngaji.nearby.ModelResults
+import com.example.meng_ngaji.viewModel.MasjidViewModel
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -39,6 +44,10 @@ class MasjidFragment : Fragment(), OnMapReadyCallback {
     private lateinit var currentLocation: Location
     private var currentMarker: Marker? = null
     private var raduis = 1500
+    private var progressDialog: ProgressDialog? = null
+    private lateinit var masjidViewModel: MasjidViewModel
+    private var strLocation = String()
+
 
 
 
@@ -71,11 +80,13 @@ class MasjidFragment : Fragment(), OnMapReadyCallback {
         mapFragment?.getMapAsync(this)
 
 
+
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
 
         mGoogleMap = googleMap
+
         when {
             ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -103,6 +114,74 @@ class MasjidFragment : Fragment(), OnMapReadyCallback {
         }
         mGoogleMap?.mapType = GoogleMap.MAP_TYPE_HYBRID
 
+        //viewmodels
+        setViewModel()
+    }
+
+    private fun setViewModel() {
+        progressDialog?.show()
+        masjidViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory()).get(MasjidViewModel::class.java)
+        masjidViewModel.setMarkerLocation(strLocation)
+        masjidViewModel.getMarkerLocation()
+            .observe(requireActivity(), { modelResults: ArrayList<ModelResults> ->
+                if (modelResults.size != 0) {
+
+                    //get multiple marker
+                    getMarker(modelResults)
+                    progressDialog?.dismiss()
+                } else {
+                    Toast.makeText(requireContext(), "Oops, Cannot get your location", Toast.LENGTH_SHORT).show()
+                    progressDialog?.dismiss()
+                }
+                progressDialog?.dismiss()
+            })
+    }
+
+    private fun getMarker(modelResultsArrayList: ArrayList<ModelResults>) {
+        for (i in modelResultsArrayList.indices) {
+
+            //set LatLong from APi
+            val latLngMarker = LatLng(
+                modelResultsArrayList[i]
+                    .modelGeometry
+                    .modelLocation
+                    .lat, modelResultsArrayList[i]
+                    .modelGeometry
+                    .modelLocation
+                    .lat
+            )
+
+            //get LatLong to Merker
+            mGoogleMap?.addMarker(
+                MarkerOptions()
+                    .position(latLngMarker)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                    .title(modelResultsArrayList[i].name)
+            )
+
+            //show Marker
+            val latLngResult = LatLng(
+                modelResultsArrayList[0].modelGeometry
+                    .modelLocation
+                    .lat, modelResultsArrayList[0]
+                    .modelGeometry
+                    .modelLocation
+                    .lng
+            )
+
+            //set position marker
+            mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLng(latLngResult))
+            mGoogleMap?.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    LatLng(
+                        latLngResult.latitude,
+                        latLngResult.longitude
+                    ), 14f
+                )
+            )
+            mGoogleMap?.uiSettings?.setAllGesturesEnabled(true)
+            mGoogleMap?.uiSettings?.isZoomControlsEnabled = true
+        }
     }
 
     private fun requestLocation() {
@@ -179,7 +258,6 @@ class MasjidFragment : Fragment(), OnMapReadyCallback {
 
         getCurrentLocation()
     }
-
 
     private fun getCurrentLocation() {
         val fusedLocationProviderClient =
