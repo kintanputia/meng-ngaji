@@ -74,8 +74,6 @@ class DetailProfilActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
                 val respon = response.body()!!
                 if (respon.success == 1) {
-//                    s.setUser(respon.user)
-
                     Toast.makeText(this@DetailProfilActivity, "Perubahan Data User Berhasil ", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {

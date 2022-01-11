@@ -76,26 +76,23 @@ class ChangePasswordActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT).show()
                     }
 
-                    override fun onResponse(
-                        call: Call<ResponModel>,
-                        response: Response<ResponModel>
-                    ) {
+                    override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
                         val respon = response.body()!!
                         if (respon.success == 1) {
                             Toast.makeText(this@ChangePasswordActivity, "Perubahan Password Berhasil ", Toast.LENGTH_SHORT).show()
                             finish()
                         } else {
-                            Toast.makeText(this@ChangePasswordActivity, "Perubahan Gagal", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@ChangePasswordActivity, "Perubahan Password Gagal", Toast.LENGTH_SHORT).show()
                         }
                     }
                 })
             }
             else{
-                Toast.makeText(this@ChangePasswordActivity, "Password tidak cocok", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ChangePasswordActivity, "Password baru tidak cocok", Toast.LENGTH_SHORT).show()
             }
         }
         else{
-            Toast.makeText(this@ChangePasswordActivity, "Password sebelumnya masih salah", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@ChangePasswordActivity, "Password saat ini masih salah", Toast.LENGTH_SHORT).show()
         }
     }
 }

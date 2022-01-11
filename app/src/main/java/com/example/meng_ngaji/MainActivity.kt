@@ -29,9 +29,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         s = SharedPref(this)
 
-        buttonLogin.setOnClickListener {
-            login()
+        if (s.getStatusLogin() == true) {
+            startActivity(Intent(this, HomeActivity::class.java))
         }
+        else {
+            buttonLogin.setOnClickListener {
+                login()
+            }
+        }
+
     }
 
     fun login() {
