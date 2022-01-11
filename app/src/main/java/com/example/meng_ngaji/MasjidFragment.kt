@@ -112,7 +112,6 @@ class MasjidFragment : Fragment(), OnMapReadyCallback {
                 requestLocation()
             }
         }
-        mGoogleMap?.mapType = GoogleMap.MAP_TYPE_HYBRID
 
         //viewmodels
         setViewModel()
